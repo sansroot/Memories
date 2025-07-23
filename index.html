@@ -325,29 +325,33 @@
         }
     }
 
-    button {
-        position: absolute;
-        font-size: 20px;
-        top: 50px;
-        left: 2px;
-        display: flex;
-        border: none;
-        align-items: center;
-        padding-left: 11px;
-        z-index: 10;
-        text-align: center;
-        font-family: "Silkscreen", sans-serif;
-        font-weight: 400;
-        background-color: transparent;
-        font-style: normal;
-        color: #cba6f7;
-        margin-bottom: 50px;
-        animation: piscar 0.8s infinite;
-    }
+.player-buttons {
+    position: absolute;
+    top: 50px;
+    left: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
 
-    button:hover {
-        animation: colorChange 1s infinite;
-    }
+.player-buttons button {
+    position: static; 
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 1px;
+    font-family: "Silkscreen", sans-serif;
+    background-color: transparent;
+    border: none;
+    color: #cba6f7;
+    cursor: pointer;
+}
+
+.player-buttons button:hover {
+    animation: colorChange 1s infinite;
+}
+
 
     @keyframes piscar {
         0% { opacity: 1; }
@@ -375,8 +379,13 @@
 <audio id="audio-player3" loop>
     <source src="rain2.mp3" type="audio/mp3">
 </audio>
-<button id="play-button">▶</button>
-<button id="stop-button" style="display: none; font-weight: 700;">II</button>
+<div class="player-buttons">
+    <button id="prev-button">⏮</button>
+    <button id="play-button">▶</button>
+    <button id="stop-button" style="display: none;">⏹</button>
+    <button id="next-button">⏭</button>
+</div>
+
 
     <div class="conteudo">
         <h1>Wushi ❤️ Sxn's<br>19/07/25</h1>
@@ -450,25 +459,90 @@
     </div>
 
     <script>
-document.getElementById("play-button").addEventListener("click", function () {
-    document.getElementById("audio-player").play();
-    document.getElementById("audio-player2").play();
-    document.getElementById("audio-player3").play();
-    document.querySelector(".carousel-text").textContent = "love on top - beyonce";
-    this.style.display = 'none';
+const musicas = [
+    {
+        src: "musica.mp3",
+        nome: "love on top - beyonce"
+    },
+    {
+        src: "freeze.mp3",
+        nome: "yung shame - freeze"
+    },
+    {
+        src: "right.mp3",
+        nome: "Lil peep - right here"
+    },
+    {
+        src: "wait.mp3",
+        nome: "oaf1 - wait 4 it"
+    },
+    {
+        src: "think.mp3",
+        nome: "oaf1 - think abt it"
+    },
+    {
+        src: "strawberry.mp3",
+        nome: "hinoni - strawberry milk"
+    },
+];
+
+let musicaAtual = 0;
+
+const playerPrincipal = new Audio();
+playerPrincipal.loop = true;
+
+const audioChuva1 = document.getElementById("audio-player2");
+const audioChuva2 = document.getElementById("audio-player3");
+
+playerPrincipal.volume = 1.0;
+audioChuva1.volume = 1.0;
+audioChuva2.volume = 0.8;
+
+function tocarMusica(index) {
+    playerPrincipal.pause();
+    playerPrincipal.src = musicas[index].src;
+    playerPrincipal.currentTime = 0;
+    playerPrincipal.play();
+
+    if (audioChuva1.paused) {
+        audioChuva1.play();
+    }
+    if (audioChuva2.paused) {
+        audioChuva2.play();
+    }
+
+    document.querySelector(".carousel-text").textContent = musicas[index].nome;
+
+    document.getElementById("play-button").style.display = 'none';
     document.getElementById("stop-button").style.display = 'inline-block';
+
     startRain();
+}
+
+document.getElementById("play-button").addEventListener("click", function () {
+    tocarMusica(musicaAtual);
 });
 
 document.getElementById("stop-button").addEventListener("click", function () {
-    document.getElementById("audio-player").pause();
-    document.getElementById("audio-player2").pause();
-    document.getElementById("audio-player3").pause();
+    playerPrincipal.pause();
+    audioChuva1.pause();
+    audioChuva2.pause();
     document.querySelector(".carousel-text").textContent = "xxxx";
     this.style.display = 'none';
     document.getElementById("play-button").style.display = 'inline-block';
     stopRain();
 });
+
+document.getElementById("next-button").addEventListener("click", function () {
+    musicaAtual = (musicaAtual + 1) % musicas.length;
+    tocarMusica(musicaAtual);
+});
+
+document.getElementById("prev-button").addEventListener("click", function () {
+    musicaAtual = (musicaAtual - 1 + musicas.length) % musicas.length;
+    tocarMusica(musicaAtual);
+});
+
 
 let rainInterval;
 const canvas = document.querySelector('.rain-canvas');
@@ -515,39 +589,40 @@ function updateRain() {
 }
 
 function startRain() {
-    updateRain();
+    if (!rainInterval) updateRain();
 }
 
 function stopRain() {
     cancelAnimationFrame(rainInterval);
+    rainInterval = null;
     drops = [];
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-document.getElementById("audio-player").volume = 1.0;
-document.getElementById("audio-player2").volume = 1;
-document.getElementById("audio-player3").volume = 0.8;
 
-        const modal = document.getElementById("modal");
-        const imagemExpandida = document.getElementById("imagemExpandida");
+const modal = document.getElementById("modal");
+const imagemExpandida = document.getElementById("imagemExpandida");
 
-        function abrirModal(src) {
-            imagemExpandida.src = src;
-            modal.style.display = "block";
-        }
+function abrirModal(src) {
+    imagemExpandida.src = src;
+    modal.style.display = "block";
+}
 
-        function fecharModal() {
-            modal.style.display = "none";
-        }
+function fecharModal() {
+    modal.style.display = "none";
+}
 
-        imagemExpandida.addEventListener("click", function (event) {
-            event.stopPropagation(); 
-        });
+imagemExpandida.addEventListener("click", function (event) {
+    event.stopPropagation(); 
+});
 
-        document.querySelectorAll('.galeria .img').forEach(img => {
-            img.addEventListener('click', function () {
-                abrirModal(this.src);
-            });
-        });
-    </script>
+document.querySelectorAll('.galeria .img').forEach(img => {
+    img.addEventListener('click', function () {
+        abrirModal(this.src);
+    });
+});
+</script>
+
+
 </body>
 </html>
