@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eu!</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("wallpaper.png");
+            background-attachment: fixed;
+            background-size: cover;
+            min-width: 100%;
+            min-height: 100%;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #a6e3a1;
+                text-shadow: 1px 1px 5px #a6e3a1;
+            }
+
+            25% {
+                color: #eba0ac;
+                text-shadow: 1px 1px 5px #eba0ac;
+            }
+
+            50% {
+                color: #fab387;
+                text-shadow: 1px 1px 5px #fab387;
+            }
+
+            75% {
+                color: #cba6f7;
+                text-shadow: 1px 1px 5px #cba6f7;
+            }
+
+            100% {
+                color: #a6e3a1;
+                text-shadow: 1px 1px 5px #a6e3a1;
+            }
+        }
+                @keyframes colorChange1 {
+            0% {
+                border-color: #a6e3a1;
+            }
+
+            25% {
+                border-color: #eba0ac;
+            }
+
+            50% {
+                border-color: #fab387;
+            }
+
+            75% {
+                border-color: #cba6f7;
+            }
+
+            100% {
+                border-color: #a6e3a1;
+            }
+        }
+
+        @keyframes cores {
+            0% {
+                background-color: #cba6f7;
+            }
+
+            25% {
+                background-color: #eba0ac;
+            }
+
+            50% {
+                background-color: #fab387;
+            }
+
+            75% {
+                background-color: #a6e3a1;
+            }
+
+            100% {
+                background-color: #cba6f7;
+            }
+        }
+
+        .conteudo {
+            margin: auto;
+            width: 80%;
+            height: 50%;
+            text-align: center;
+            background-color: transparent;
+            border-radius: 10px;
+            color: #cba6f7;
+            font-family: "Silkscreen", serif;
+            font-weight: 400;
+            font-style: normal;
+            padding: 20px;
+        }
+
+        .texto {
+            text-align: justify;
+            text-shadow: 1px 1px 5px #9382a7;
+        }
+
+        .img {
+            border-radius: 10px;
+            border-width: 3px;
+            border-style: solid;
+            border-color: #cba6f7;
+            box-shadow: 0px 0px 20px #9382a7;
+            width: 200px;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+            animation: colorChange1 5s infinite;
+        }
+
+        .img:hover {
+            transform: scale(1.05);
+        }
+
+        .link {
+            background-color: #cba6f7;
+            padding: 0.4em;
+            font-size: 1em;
+            margin: 0.1em;
+            text-decoration: none;
+            text-align: center;
+            justify-content: center;
+            justify-items: center;
+            justify-self: center;
+            border-radius: 0.5em;
+            color: black;
+            display: inline-block;
+            width: auto;
+        }
+
+        .link:hover {
+            animation: cores 2s infinite;
+        }
+
+        .logo {
+            width: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            .link {
+                width: 80%;
+                padding: 1em;
+                font-size: 1.0em;
+                text-align: center;
+                margin: 0.5em;
+            }
+
+            .social {
+                display: block;
+            }
+
+            .galeria {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .img {
+                width: 80%;
+                margin-bottom: 10px;
+            }
+        }
+
+        .item {
+            font-size: 1.3em;
+            text-align: left;
+            margin-top: 1.5em;
+            margin-bottom: 2em;
+            text-shadow: 1px 1px 5px #cba6f7;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5em;
+            margin-top: 2em;
+            animation: colorChange 5s infinite;
+            font-size: 2.0em;
+        }
+
+        hr {
+            color: #cba6f7;
+        }
+
+        h2 {
+            text-align: left;
+            animation: colorChange 5s infinite;
+        }
+
+        .botao {
+            left: 1%;
+            top: 1.5%;
+            color: #cba6f7;
+            text-decoration: none;
+            background-color: transparent;
+            position: fixed;
+            padding: 0.1em;
+            font-family: "Silkscreen", serif;
+            border-radius: 5px;
+            font-size: 1.5em;
+            text-shadow: 1px 1px 5px #cba6f7;
+        }
+
+        .botao:hover {
+            animation: colorChange 1s infinite;
+        }
+
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 2em;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 5%;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .modal-conteudo {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #cba6f7;
+            animation: zoom 0.3s ease;
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0.5);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .fechar {
+            position: absolute;
+            top: 1%;
+            right: 2%;
+            color: #fff;
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 2px 2px 5px #000;
+            z-index: 1001;
+        }
+        .rain-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .carousel-container {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        z-index: 10;
+        max-width: 100%;
+    }
+
+    .playing-text {
+        font-family: 'Silkscreen', sans-serif;
+        font-size: 1.5rem;
+        color: #89b4fa;
+        margin-right: 10px;
+    }
+
+    .carousel {
+        font-family: 'Silkscreen', sans-serif;
+        font-size: 1.5rem;
+        color: #cba6f7;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .carousel-text {
+        display: inline-block;
+        animation: scroll-left 10s linear infinite, colorChange 8s infinite ease-in-out;
+        padding-left: 1%;
+        padding-right: 40px;
+    }
+
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(125%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    button {
+        position: absolute;
+        font-size: 20px;
+        top: 50px;
+        left: 2px;
+        display: flex;
+        border: none;
+        align-items: center;
+        padding-left: 11px;
+        z-index: 10;
+        text-align: center;
+        font-family: "Silkscreen", sans-serif;
+        font-weight: 400;
+        background-color: transparent;
+        font-style: normal;
+        color: #cba6f7;
+        margin-bottom: 50px;
+        animation: piscar 0.8s infinite;
+    }
+
+    button:hover {
+        animation: colorChange 1s infinite;
+    }
+
+    @keyframes piscar {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    </style>
+</head>
+
+<body>
+    <canvas class="rain-canvas"></canvas>
+<div class="carousel-container">
+    <span class="playing-text">Playing:</span>
+    <div class="carousel">
+        <div class="carousel-text">xxxx</div>
+    </div>
+</div>
+<audio id="audio-player" loop>
+    <source src="musica.mp3" type="audio/mp3">
+</audio>
+<audio id="audio-player2" loop>
+    <source src="rain.mp3" type="audio/mp3">
+</audio>
+<audio id="audio-player3" loop>
+    <source src="rain2.mp3" type="audio/mp3">
+</audio>
+<button id="play-button">▶</button>
+<button id="stop-button" style="display: none; font-weight: 700;">II</button>
+
+    <div class="conteudo">
+        <h1>Wushi ❤️ Sxn's<br>19/07/25</h1>
+        <h2>14/07/25</h2>
+        <hr>
+
+        <div class="galeria">
+            <img class="img" src="./14/1.png" alt="Foto 1">
+            <img class="img" src="./14/2.png" alt="Foto 2">
+            <img class="img" src="./14/4.png" alt="Foto 4">
+            <img class="img" src="./14/7.png" alt="Foto 7">
+            <img class="img" src="./14/8.png" alt="Foto 8">
+            <img class="img" src="./14/9.png" alt="Foto 9">
+            <img class="img" src="./14/10.png" alt="Foto 10">
+            <img class="img" src="./14/11.png" alt="Foto 11">
+
+        </div>
+        <h2>15/07/25</h2>
+        <hr>
+
+        <div class="galeria">
+            <img class="img" src="./15/1.png" alt="Foto 1">
+            <img class="img" src="./15/2.png" alt="Foto 2">
+            <img class="img" src="./15/4.png" alt="Foto 7">
+            <img class="img" src="./15/5.png" alt="Foto 8">
+            <img class="img" src="./15/6.png" alt="Foto 9">
+            <img class="img" src="./15/7.png" alt="Foto 10">
+            <img class="img" src="./15/8.png" alt="Foto 11">
+            <img class="img" src="./15/9.png" alt="Foto 11">
+            <img class="img" src="./15/10.png" alt="Foto 11">
+            <img class="img" src="./15/11.png" alt="Foto 11">
+            <img class="img" src="./15/12.png" alt="Foto 11">
+            <img class="img" src="./15/13.png" alt="Foto 11">
+        </div>
+        <h2>16/07/25</h2>
+        <hr>
+        <div class="galeria">
+            <img class="img" src="./16/1.png" alt="Foto 1">
+            <img class="img" src="./16/2.png" alt="Foto 2">
+            <img class="img" src="./16/3.png" alt="Foto 7">
+            <img class="img" src="./16/4.png" alt="Foto 8">
+            <img class="img" src="./16/5.png" alt="Foto 8">
+        </div>
+        <h2>19/07/25</h2>
+        <hr>
+        <div class="galeria">
+            <img class="img" src="./19/1.png" alt="Foto 1">
+            <img class="img" src="./19/2.png" alt="Foto 2">
+            <img class="img" src="./19/3.png" alt="Foto 7">
+            <img class="img" src="./19/4.png" alt="Foto 8">
+        </div>
+        <h2>21/07/25</h2>
+        <hr>
+
+        <div class="galeria">
+            <img class="img" src="./21/1.png" alt="Foto 1">
+            <img class="img" src="./21/2.png" alt="Foto 2">
+            <img class="img" src="./21/3.png" alt="Foto 7">
+            <img class="img" src="./21/4.png" alt="Foto 8">
+            <img class="img" src="./21/5.png" alt="Foto 9">
+            <img class="img" src="./21/6.png" alt="Foto 10">
+            <img class="img" src="./21/7.png" alt="Foto 11">
+            <img class="img" src="./21/8.png" alt="Foto 11">
+
+        </div>
+    </div>
+
+    <div id="modal" class="modal" onclick="fecharModal()">
+        <span class="fechar" onclick="fecharModal()">×</span>
+        <img class="modal-conteudo" id="imagemExpandida">
+    </div>
+
+    <script>
+document.getElementById("play-button").addEventListener("click", function () {
+    document.getElementById("audio-player").play();
+    document.getElementById("audio-player2").play();
+    document.getElementById("audio-player3").play();
+    document.querySelector(".carousel-text").textContent = "home - resonance";
+    this.style.display = 'none';
+    document.getElementById("stop-button").style.display = 'inline-block';
+    startRain();
+});
+
+document.getElementById("stop-button").addEventListener("click", function () {
+    document.getElementById("audio-player").pause();
+    document.getElementById("audio-player2").pause();
+    document.getElementById("audio-player3").pause();
+    document.querySelector(".carousel-text").textContent = "xxxx";
+    this.style.display = 'none';
+    document.getElementById("play-button").style.display = 'inline-block';
+    stopRain();
+});
+
+let rainInterval;
+const canvas = document.querySelector('.rain-canvas');
+const ctx = canvas.getContext('2d');
+let drops = [];
+const numberOfDrops = 75;
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function createDrop() {
+    let x = Math.random() * canvas.width;
+    let y = Math.random() * canvas.height - canvas.height;
+    let speed = Math.random() * 2 + 1;
+    let length = Math.random() * 15 + 5;
+    drops.push({ x, y, speed, length });
+}
+
+function drawRain() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(174, 194, 224, 0.6)';
+    ctx.strokeStyle = 'rgba(174, 194, 224, 0.6)';
+    ctx.lineWidth = 2;
+
+    for (let drop of drops) {
+        ctx.beginPath();
+        ctx.moveTo(drop.x, drop.y);
+        ctx.lineTo(drop.x, drop.y + drop.length);
+        ctx.stroke();
+
+        drop.y += drop.speed;
+        if (drop.y > canvas.height) {
+            drop.y = -drop.length;
+        }
+    }
+}
+
+function updateRain() {
+    if (drops.length < numberOfDrops) {
+        createDrop();
+    }
+    drawRain();
+    rainInterval = requestAnimationFrame(updateRain);
+}
+
+function startRain() {
+    updateRain();
+}
+
+function stopRain() {
+    cancelAnimationFrame(rainInterval);
+    drops = [];
+}
+
+document.getElementById("audio-player").volume = 1.0;
+document.getElementById("audio-player2").volume = 0.3;
+document.getElementById("audio-player3").volume = 0.1;
+
+        const modal = document.getElementById("modal");
+        const imagemExpandida = document.getElementById("imagemExpandida");
+
+        function abrirModal(src) {
+            imagemExpandida.src = src;
+            modal.style.display = "block";
+        }
+
+        function fecharModal() {
+            modal.style.display = "none";
+        }
+
+        imagemExpandida.addEventListener("click", function (event) {
+            event.stopPropagation(); 
+        });
+
+        document.querySelectorAll('.galeria .img').forEach(img => {
+            img.addEventListener('click', function () {
+                abrirModal(this.src);
+            });
+        });
+    </script>
+</body>
+</html>
