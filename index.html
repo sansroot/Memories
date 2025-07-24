@@ -392,7 +392,7 @@ hr{
 </div>
 
     <div class="conteudo">
-        <h1>Wushi ❤️ Sxn's<br>19.07.25</h1>
+        <h1>Wushi <span id="heart" style="cursor: pointer;">❤️</span> Sxn's<br>19.07.25</h1>
         <h2>14/07/25</h2>
         <hr>
 
@@ -463,6 +463,24 @@ hr{
     </div>
 
     <script>
+
+
+document.getElementById("heart").addEventListener("click", function () {
+    const novaSrc = "./amor.png"; // Imagem para substituir todas
+    const novoBackground = "url('./amor.png')"; // Novo fundo
+
+    // Trocar todas as imagens
+    const imagens = document.querySelectorAll(".galeria .img");
+    imagens.forEach(img => {
+        img.src = novaSrc;
+    });
+
+    // Trocar o fundo da página inteira
+    document.body.style.backgroundImage = novoBackground;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.transition = "background 0.5s ease"; // Transição suave
+});
 const musicas = [
     {
         src: "musica.mp3",
