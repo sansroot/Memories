@@ -466,20 +466,19 @@ hr{
 
 
 document.getElementById("heart").addEventListener("click", function () {
-    const novaSrc = "./amor.png"; // Imagem para substituir todas
-    const novoBackground = "url('./amor.png')"; // Novo fundo
+    const novaSrc = "./amor.png"; 
+    const novoBackground = "url('./amor.png')"; 
 
-    // Trocar todas as imagens
+
     const imagens = document.querySelectorAll(".galeria .img");
     imagens.forEach(img => {
         img.src = novaSrc;
     });
 
-    // Trocar o fundo da página inteira
     document.body.style.backgroundImage = novoBackground;
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
-    document.body.style.transition = "background 0.5s ease"; // Transição suave
+    document.body.style.transition = "background 0.5s ease"; 
 });
 const musicas = [
     {
